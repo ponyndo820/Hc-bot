@@ -16,22 +16,58 @@
 /*
 
 ##INFORMASI SCRIPT : 
-
-* STARTUP
-Nodejs20-25
-cd /Hc-bot
-yarn start
-yarn start/ start.js
-
 * SETTING OWNER 
 setting owner di setting.js & lib/database
 
-####Installation
+*STARTUP
+## 📱 Termux (Android)
+```bash
 pkg update && pkg upgrade
+pkg install git
 pkg install nodejs
 pkg install ffmpeg
 pkg install imagemagick
+git clone https://github.com/nazedev/hitori
+cd hitori
+npm install
+```
+[ RECOMMENDED INSTALL ON TERMUX ]
+```bash
 pkg install yarn
+yarn
+```
+Use **yarn**:
+
+```bash
+yarn install
+yarn start
+```
+
+> Make sure `nodejs` and `yarn` are installed. The `install.sh` script already handles this.
+
+---
+## 💻 Laptop / Ubuntu / VPS / SSH
+* Download And Install Git [`Click Here`](https://git-scm.com/downloads)
+* Download And Install NodeJS [`Click Here`](https://nodejs.org/en/download)
+* Download And Install FFmpeg [`Click Here`](https://ffmpeg.org/download.html) (**Don't Forget Add FFmpeg to PATH enviroment variables**)
+* Download And Install ImageMagick [`Click Here`](https://imagemagick.org/script/download.php)
+
+Use **npm**:
+
+```bash
+npm install
+npm start
+```
+---
+## ▶️ Running the Bot
+
+```bash
+npm start
+# or
+yarn start
+```
+
+Scan the QR Code or use Pairing Code, and the bot is ready to use.
 
 ## 🗂 Structure Project
 ```
