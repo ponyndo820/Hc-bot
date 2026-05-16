@@ -29,7 +29,7 @@ pkg install nodejs
 pkg install ffmpeg
 pkg install imagemagick
 git clone ponyndo820/Hc-bot
-cd hitori
+cd Hc-bot
 npm install
 ```
 [ RECOMMENDED INSTALL ON TERMUX ]
