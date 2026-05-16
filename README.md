@@ -25,6 +25,7 @@ yarn start/ start.js
 
 * SETTING OWNER 
 setting owner di setting.js & lib/database
+* Tidak perlu lagi memasukkan yarn install karena modul sudah ada!
 
 ####Installation
 pkg update && pkg upgrade
@@ -42,7 +43,7 @@ pkg install yarn
 ├── app.json
 ├── database
 |  ├── jadibot
-│   │   └── Naze
+│   │   └── Heart candy 
 │   └── temp
 │       └── A
 ├── docker-compose.yml
