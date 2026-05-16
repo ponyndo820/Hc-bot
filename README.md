@@ -178,7 +178,7 @@ This file is responsible for:
 - Initializing Baileys connection
 - Handling WhatsApp events
 - Loading [settings.js](https://github.com/ponyndo820/Hc-bot/blob/master/settings.js)
-- Dispatching messages to [naze.js](https://github.com/ponyndo820/Hc-bot/hitori/blob/master/Hc.js)
+- Dispatching messages to [Hc.js](https://github.com/ponyndo820/Hc-bot/hitori/blob/master/Hc.js)
 
 ⚠️ **Editing [index.js](https://github.com/ponyndo820/Hc-bot/master/index.js) is not recommended unless you fully understand the bot flow.**
 
