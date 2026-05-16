@@ -115,8 +115,8 @@ global.owner = ['628xxxxxxxxxx']
 
 #### Bot Identity
 ```js
-global.botname = 'Hitori Bot'
-global.author = 'Nazedev'
+global.botname = 'Hc-bot'
+global.author = 'Heart candy'
 ```
 
 #### Command Prefix
