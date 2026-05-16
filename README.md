@@ -1,9 +1,7 @@
 /*
 	* Create By Heart candy 
-	* Follow : 
-	https://www.instagram.com/ponyndo1_original?igsh=NDZ0dmYwNDltZHFu
-	* Whatsapp : 
-	https://whatsapp.com/channel/0029Vb6en2iAu3aXA7AcFI0Y
+	* Follow: https://www.instagram.com/ponyndo1_original?igsh=NDZ0dmYwNDltZHFu
+	* Whatsapp: https://whatsapp.com/channel/0029Vb6en2iAu3aXA7AcFI0Y
 */
 
 #### Support Me
