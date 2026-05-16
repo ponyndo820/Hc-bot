@@ -15,7 +15,7 @@
     *my ch : 'https://whatsapp.com/channel/0029Vb6en2iAu3aXA7AcFI0Y',
     *my gc : 'https://chat.whatsapp.com/E50d9VEtLnc3acHPFeRdqY',
 /*
-##Description Update 
+## Description Update 
 versi masih sama, tetapi ada fitur yang dipangkas.
 Berapa fitur seperti Remove background itu sengaja dihilangkan karena ada masalah Dengan modul nya.
 (Bot version '1.1.9-beta')
