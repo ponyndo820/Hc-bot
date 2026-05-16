@@ -20,12 +20,13 @@
 ##INFORMASI SCRIPT : 
 
 * STARTUP
-Nodejs20-25 
+Nodejs20-25
+cd /Hc-bot
+yarn start
 yarn start/ start.js
 
 * SETTING OWNER 
 setting owner di setting.js & lib/database
-* Tidak perlu lagi memasukkan yarn install karena modul sudah ada!
 
 ####Installation
 pkg update && pkg upgrade
