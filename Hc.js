@@ -4139,95 +4139,6 @@ break
                        }
                     }
                     break
-                   case 'rbg' : case 'rmbg': case 'removebg': case 'nobg': case 'hapusbackground': case 'removebackground': {
-                        if (!m.quoted) return m.reply(`Kirim/reply gambar dengan caption *${prefix + command}*`);
-                        let mime = m.quoted.mimetype || ''
-    
-                         if (!/image/.test(quoted.mime) && !/webp/.test(quoted.mime)) return m.reply(`Format ${mime} tidak didukung! Hanya gambar/stiker.`);
-
-                         naze.sendMessage(m.chat, { react: { text: "⏳", key: m.key } });
-
-                        try {
-                             const { removeBg } = require('./node_modules/remove.bg/dist/removebg.js');
-                             const buffer = await m.quoted.download();
-
-                              let cutoutUrl  = await removeBg(buffer);
-        
-                              if (!cutoutUrl) {
-                              naze.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
-                              return m.reply("Gagal mengambil hasil remove background❗");
-                        }
-
-                        const resultBuffer = await getBuffer(cutoutUrl); 
-        
-                        await naze.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
-
-                        await naze.sendMessage(m.chat, { 
-                             image: resultBuffer,
-                            caption: `✅ *Background Berhasil Dihapus*`
-                        }, { quoted: m });
-
-                     } catch (error) {
-                        console.error(error);
-                        naze.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
-                        m.reply(`Error: ${error.message}`);
-                   }
-          }
-          break
-          case 'spamwa': {
-                // Format: !spamwa [nomor] [jumlah] [teks] -> Mengirim spam ke nomor target tertentu
-                const nomorMentah = argumen[0];
-                const jumlah = parseInt(argumen[1]);
-                const teksSpam = argumen.slice(2).join(' ');
-
-                if (!nomorMentah || isNaN(jumlah) || !teksSpam) {
-                    await sock.sendMessage(idPengirim, { text: 'Format salah!\nGunakan: *!spamwa [nomor] [jumlah] [teks]*\nContoh: !spamwa 628123456789 10 P' });
-                    return;
-                }
-
-                if (jumlah > 50) {
-                    await sock.sendMessage(idPengirim, { text: 'Maksimal pengiriman adalah 50 pesan untuk menghindari blokir.' });
-                    return;
-                }
-
-                // Membersihkan karakter non-angka dan memformat nomor ke ID WhatsApp JID resmi
-                const nomorBersih = nomorMentah.replace(/[^0-9]/g, '');
-                const jidTarget = `${nomorBersih}@s.whatsapp.net`;
-
-                try {
-                    for (let i = 0; i < jumlah; i++) {
-                        await sock.sendMessage(jidTarget, { text: teksSpam });
-                        await new Promise(resolve => setTimeout(resolve, 300));
-                    }
-                    // Berikan laporan sukses ke pengirim perintah jika selesai
-                    await sock.sendMessage(idPengirim, { text: `Berhasil mengirim ${jumlah} pesan spam ke nomor ${nomorBersih}` });
-                } catch (error) {
-                    console.error(error);
-                    await sock.sendMessage(idPengirim, { text: 'Gagal mengirim pesan. Pastikan nomor target valid dan terdaftar di WhatsApp.' });
-                }
-                break;
-            }
-
-          case 'patrick':
-case 'patricksticker': {
-var ano = await fetchJson('https://raw.githubusercontent.com/DGXeon/XeonMedia/main/patrick')
-var wifegerak = ano.split('\n')
-var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)]
-encmedia = await naze.sendImageAsSticker(from, wifegerakx, m, { packname: global.packname, author: global.author, })
-}
-break
-			// Menu
-			case 'menu': {
-				if (args[0] == 'set') {
-					if (!isCreator) return m.reply(mess.owner)
-					if (['1','2','3'].includes(args[1])) {
-						set.template = parseInt(Number(args[1]))
-						m.reply('Sukses Mengubah Template Menu')
-					} else m.reply(`Template Menu:\n- 1 (Button Menu)\n- 2 (List Menu)\n- 3 (Document Menu)\n\nExample: ${prefix + command} set 1`)
-				} else await templateMenu(naze, set.template, m, prefix, setv, db, { locale_day, date, date_time, botNumber, author, packname, isVip, isPremium, ucapanWaktu })
-             
-       }
-       break
 			case 'allmenu': {
 				let profile
 				try {
@@ -4355,7 +4266,6 @@ break
 │${setv} ${prefix}niatsholat
 ╰─┬────❍
 ╭─┴❍「 *TOOLS* 」❍
-│${setv} ${prefix}removebg (reply pesan)
 │${setv} ${prefix}get (url) 🔸️
 │${setv} ${prefix}hd (reply pesan)
 │${setv} ${prefix}toaudio (reply pesan)
