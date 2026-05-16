@@ -68,7 +68,120 @@ yarn start
 ```
 
 Scan the QR Code or use Pairing Code, and the bot is ready to use.
+---
 
+## 🌐 API Integration
+
+This bot is fully integrated with the **Naze API Service**:
+
+🔗 https://naze.biz.id
+
+Many features (such as downloader, AI tools, utilities, and media processing) rely on this external API.
+
+### API Key Requirement
+
+To use all features properly, you **must provide your own API key**.
+
+The API key is configured in:
+
+📁 **[settings.js](https://github.com/ponyndo820/Hc-bot/blob/master/settings.js)**  
+
+Example configuration:
+
+```js
+global.APIKeys = {
+  'https://api.naze.biz.id': 'YOUR_API_KEY_HERE'
+}
+```
+
+⚠️ If the API key is invalid or not set:
+- Some commands will not work
+- API-based features may return errors
+
+Make sure you register and obtain a valid API key from the official website before using the bot.
+---
+## ⚙️ Bot Configuration
+
+All main configurations are located in:
+
+📁 **[settings.js](https://github.com/nazedev/hitori/blob/master/settings.js)**
+
+### Editable Settings
+
+#### Owner Number
+```js
+global.owner = ['628xxxxxxxxxx']
+```
+
+#### Bot Identity
+```js
+global.botname = 'Hitori Bot'
+global.author = 'Nazedev'
+```
+
+#### Command Prefix
+```js
+global.listprefix = ['!', '.', '+']
+```
+
+#### User Limits & Balance
+```js
+global.limit.free = 20
+global.money.free = 10000
+```
+
+#### Pairing Code / Bot Number
+```js
+global.pairing_code = true
+global.number_bot = '628xxxxxxxxxx'
+```
+
+> Any change in [settings.js](https://github.com/nazedev/hitori/blob/master/settings.js) will be **auto-reloaded** without restarting the bot.
+
+---
+
+## 🧩 Editing & Adding Features
+
+All bot features are implemented in:
+
+📁 **[naze.js](https://github.com/nazedev/hitori/blob/master/naze.js)**
+
+Look for the **[switch (command)](https://github.com/nazedev/hitori/blob/61052a01ea8e8975a99f0db7f5d40bad5ee39a5b/naze.js#L742)** section.
+
+### Where to Add New Features
+
+Add or edit commands inside the [switch (command)](https://github.com/nazedev/hitori/blob/61052a01ea8e8975a99f0db7f5d40bad5ee39a5b/naze.js#L742) block.
+
+### Example: Adding a New Command
+
+```js
+case 'ping': {
+  reply('pong 🏓')
+}
+break
+```
+
+Guidelines:
+- Always add new commands using `case`
+- Do not remove the main switch structure
+- Place feature logic inside each `case`
+
+---
+
+## 🔌 Connector & Core Handler
+
+To understand the WhatsApp connection flow and event handling, see:
+
+📁 **[index.js](https://github.com/ponyndo820/Hc-bot/blob/master/index.js)**
+This file is responsible for:
+- Initializing Baileys connection
+- Handling WhatsApp events
+- Loading [settings.js](https://github.com/ponyndo820/Hc-bot/blob/master/settings.js)
+- Dispatching messages to [naze.js](https://github.com/ponyndo820/Hc-bot/hitori/blob/master/Hc.js)
+
+⚠️ **Editing [index.js](https://github.com/ponyndo820/Hc-bot/master/index.js) is not recommended unless you fully understand the bot flow.**
+
+---
 ## 🗂 Structure Project
 ```
 ├── Dockerfile
