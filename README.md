@@ -145,7 +145,7 @@ global.number_bot = '628xxxxxxxxxx'
 
 All bot features are implemented in:
 
-📁 **[naze.js](https://github.com/nazedev/hitori/blob/master/naze.js)**
+📁 **[Hc.js](https://github.com/ponyndo820/Hc-bot/blob/master/Hc.js)**
 
 Look for the **[switch (command)](https://github.com/nazedev/hitori/blob/61052a01ea8e8975a99f0db7f5d40bad5ee39a5b/naze.js#L742)** section.
 
@@ -249,7 +249,7 @@ License: [MIT](https://choosealicense.com/licenses/mit/)
 *Bot Naze yang telah dimodifikasi
 
 ## Contributor
-
+- [Heart candy](https://github.com/ponyndo820) (Pemodifikasi)
 - [NazeDev](https://github.com/nazedev) (Pembuat)
 - [Zaynn](https://github.com/ZaynRcK) (Penyedia Layanan API)
 - [Dani](https://github.com/nazedev) (Penyumbang Code)
