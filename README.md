@@ -246,3 +246,9 @@ This file is responsible for:
 License: [MIT](https://choosealicense.com/licenses/mit/)
 
 *Bot Naze yang telah dimodifikasi
+
+## Contributor
+
+- [NazeDev](https://github.com/nazedev) (Pembuat)
+- [Zaynn](https://github.com/ZaynRcK) (Penyedia Layanan API)
+- [Dani](https://github.com/nazedev) (Penyumbang Code)
