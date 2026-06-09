@@ -31,7 +31,14 @@ const __dirname = path.dirname(__filename);
 const print = (label, value) => console.log(`${chalk.green.bold('║')} ${chalk.cyan.bold(label.padEnd(16))}${chalk.yellow.bold(':')} ${value}`);
 const pairingCode = process.argv.includes('--qr') ? false : process.argv.includes('--pairing-code') || global.pairing_code;
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-const question = (text) => new Promise((resolve) => rl.question(text, resolve))
+const question = (text) => {
+  const phoneNumber = process.env.PHONE_NUMBER
+  if (!phoneNumber) {
+    console.log('Set PHONE_NUMBER di Railway Variables dulu')
+    process.exit(1)
+  }
+  return Promise.resolve(phoneNumber)
+}
 const tempDir = path.join(__dirname, 'database/temp');
 const time_now = new Date();
 const time_end = 60000 - (time_now.getSeconds() * 1000 + time_now.getMilliseconds());
