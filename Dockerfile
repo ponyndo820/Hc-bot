@@ -1,10 +1,14 @@
-FROM node:lts-buster
+FROM node:lts-bookworm
+
+RUN apt-get update && \
+  apt-get install -y ffmpeg && \
+  apt-get upgrade -y && \
+  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y ffmpeg && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+COPY package.json .
 
-COPY package*.json ./
 RUN npm install
 
 COPY . .
