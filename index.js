@@ -29,21 +29,21 @@ const __dirname = path.dirname(__filename);
 
 const print = (label, value) => console.log(`${chalk.green.bold('║')} ${chalk.cyan.bold(label.padEnd(16))}${chalk.yellow.bold(':')} ${value}`);
 
-// Tambahin ini
 const pairingCode = process.argv.includes('--qr') ? false : process.argv.includes('--pairing-code') || global.pairing_code;
 
-// Fungsi question ambil dari env Railway
 const question = (text) => {
-  console.log('Debug ENV:', process.env.PHONE_NUMBER)
-  const phoneNumber = process.env.PHONE_NUMBER
+  // Hardcode nomor kamu di sini
+  const phoneNumber = '6285823709413' 
+  
+  console.log('Using phone number:', phoneNumber)
+  
   if (!phoneNumber) {
-    console.log('Set PHONE_NUMBER di Railway Variables dulu')
+    console.log('Nomor telepon kosong')
     process.exit(1)
   }
   return Promise.resolve(phoneNumber)
 }
 
-// Cuma 1x, jangan duplikat
 const tempDir = path.join(__dirname, 'database/temp');
 const time_now = new Date();
 const time_end = 60000 - (time_now.getSeconds() * 1000 + time_now.getMilliseconds());
