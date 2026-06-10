@@ -3316,7 +3316,7 @@ async function handleMessage(sock, msg) {
     const args = text.split(' ').slice(1).join(' ').trim();
 
     switch (cmd) {
-        case 'cariwaifu': {
+		case 'cariwaifu': {
             if (!args) {
                 await sock.sendMessage(from, { text: 'Masukin nama karakter. Contoh: !cariwaifu Rem' });
                 break;
