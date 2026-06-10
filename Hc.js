@@ -3281,17 +3281,13 @@ break
 			break
 			
 			// Anime Menu
-			case 'waifu': case 'neko': {
-				try {
-					if (!isNsfw && text === 'nsfw') return m.reply('Filter Nsfw Sedang Aktif!')
-					const res = await fetchJson('https://api.waifu.pics/' + (text === 'nsfw' ? 'nsfw' : 'sfw') + '/' + command)
-					await naze.sendFileUrl(m.chat, res.url, 'Random Waifu', m)
-					setLimit(m, db)
-				} catch (e) {
-					m.reply('Server sedang offline❗')
-				}
-			}
-			break
+			case 'waifu':
+  let res = await fetch('https://api.waifu.pics/sfw/waifu')
+    if (!res.ok) throw await res.text()
+    let json = await res.json()
+    if (!json.url) throw 'Error!'
+  conn.sendButton(m.chat, 'Random Image Waifu', me, json.url, [['waifu', `${usedPrefix}waifu`]], m)
+break
 			
 			// Fun Menu
 			case 'dadu': {
