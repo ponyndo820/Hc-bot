@@ -3319,7 +3319,7 @@ async function handleMessage(sock, msg) {
 		case 'cariwaifu': {
             if (!args) {
                 await sock.sendMessage(from, { text: 'Masukin nama karakter. Contoh: !cariwaifu Rem' });
-                break;
+                break
             }
 
             const charKey = `char:${args.toLowerCase()}`;
@@ -3336,7 +3336,7 @@ async function handleMessage(sock, msg) {
 
                 if (!character) {
                     await sock.sendMessage(from, { text: 'Karakter tidak ditemukan 😢' });
-                    break;
+                    break
                 }
 
                 await sock.sendMessage(from, {
@@ -3347,12 +3347,12 @@ async function handleMessage(sock, msg) {
                 console.error(e);
                 await sock.sendMessage(from, { text: 'Gagal ambil data dari Jikan API.' });
             }
-            break;
+            break
 
         case 'carianime': {
             if (!args) {
                 await sock.sendMessage(from, { text: 'Masukin nama anime. Contoh: !carianime Jujutsu Kaisen' });
-                break;
+                break
             }
 
             const animeKey = `anime:${args.toLowerCase()}`;
@@ -3369,7 +3369,7 @@ async function handleMessage(sock, msg) {
 
                 if (!anime) {
                     await sock.sendMessage(from, { text: 'Anime tidak ditemukan 😢' });
-                    break;
+                    break
                 }
 
                 await sock.sendMessage(from, {
@@ -3380,7 +3380,7 @@ async function handleMessage(sock, msg) {
                 console.error(e);
                 await sock.sendMessage(from, { text: 'Gagal ambil data dari Jikan API.' });
             }
-            break;
+            break
 
         case 'randomanime': {
             try {
@@ -3396,10 +3396,10 @@ async function handleMessage(sock, msg) {
                 console.error(e);
                 await sock.sendMessage(from, { text: 'Gagal ambil random anime.' });
             }
-            break;
+            break
 
         default:
-            break;
+            break
     }
 }
 
