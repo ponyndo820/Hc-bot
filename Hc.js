@@ -3281,14 +3281,130 @@ break
 			break
 			
 			// Anime Menu
-			case 'waifu':
-  let res = await fetch('https://api.waifu.pics/sfw/waifu')
-    if (!res.ok) throw await res.text()
-    let json = await res.json()
-    if (!json.url) throw 'Error!'
-  conn.sendButton(m.chat, 'Random Image Waifu', me, json.url, [['waifu', `${usedPrefix}waifu`]], m)
-break
-			
+			const axios = require('axios');
+
+// Cache sederhana
+const jikanCache = new Map();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 menit
+
+function getFromCache(key) {
+    const cached = jikanCache.get(key);
+    if (!cached) return null;
+    if (Date.now() - cached.time > CACHE_DURATION) {
+        jikanCache.delete(key);
+        return null;
+    }
+    return cached.data;
+}
+
+function setCache(key, data) {
+    jikanCache.set(key, { data, time: Date.now() });
+}
+
+// Cleanup cache tiap 10 menit
+setInterval(() => {
+    const now = Date.now();
+    for (let [key, val] of jikanCache.entries()) {
+        if (now - val.time > CACHE_DURATION) jikanCache.delete(key);
+    }
+}, 10 * 60 * 1000);
+
+async function handleMessage(sock, msg) {
+    const from = msg.key.remoteJid;
+    const text = msg.message?.conversation || msg.message?.extendedTextMessage?.text || "";
+    const cmd = text.split(' ')[0].toLowerCase();
+    const args = text.split(' ').slice(1).join(' ').trim();
+
+    switch (cmd) {
+        case '!cariwaifu':
+            if (!args) {
+                await sock.sendMessage(from, { text: 'Masukin nama karakter. Contoh: !cariwaifu Rem' });
+                break;
+            }
+
+            const charKey = `char:${args.toLowerCase()}`;
+            let character = getFromCache(charKey);
+
+            try {
+                if (!character) {
+                    const res = await axios.get(`https://api.jikan.moe/v4/characters/search?q=${encodeURIComponent(args)}&limit=1`);
+                    // Jikan v4 membungkus array di dalam properti .data
+                    character = res.data.data?.[0]; 
+                    if (character) setCache(charKey, character);
+                    await new Promise(r => setTimeout(r, 350));
+                }
+
+                if (!character) {
+                    await sock.sendMessage(from, { text: 'Karakter tidak ditemukan 😢' });
+                    break;
+                }
+
+                await sock.sendMessage(from, {
+                    image: { url: character.images.jpg.image_url },
+                    caption: `*${character.name}*\n\n${character.about ? character.about.substring(0, 300) + '...' : 'Tidak ada deskripsi.'}`
+                });
+            } catch (e) {
+                console.error(e);
+                await sock.sendMessage(from, { text: 'Gagal ambil data dari Jikan API.' });
+            }
+            break;
+
+        case '!carianime':
+            if (!args) {
+                await sock.sendMessage(from, { text: 'Masukin nama anime. Contoh: !carianime Jujutsu Kaisen' });
+                break;
+            }
+
+            const animeKey = `anime:${args.toLowerCase()}`;
+            let anime = getFromCache(animeKey);
+
+            try {
+                if (!anime) {
+                    const res = await axios.get(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(args)}&limit=1`);
+                    // Jikan v4 membungkus array di dalam properti .data
+                    anime = res.data.data?.[0];
+                    if (anime) setCache(animeKey, anime);
+                    await new Promise(r => setTimeout(r, 350));
+                }
+
+                if (!anime) {
+                    await sock.sendMessage(from, { text: 'Anime tidak ditemukan 😢' });
+                    break;
+                }
+
+                await sock.sendMessage(from, {
+                    image: { url: anime.images.jpg.image_url },
+                    caption: `*${anime.title}*\n\n*Score:* ${anime.score || 'N/A'}\n*Episodes:* ${anime.episodes || '?'}\n*Status:* ${anime.status}\n\n${anime.synopsis ? anime.synopsis.substring(0, 200) + '...' : 'Tidak ada sinopsis.'}`
+                });
+            } catch (e) {
+                console.error(e);
+                await sock.sendMessage(from, { text: 'Gagal ambil data dari Jikan API.' });
+            }
+            break;
+
+        case '!randomanime':
+            try {
+                const res = await axios.get('https://api.jikan.moe/v4/random/anime');
+                // Endpoint random langsung mengembalikan satu objek di dalam properti .data
+                const randomAnime = res.data.data; 
+                
+                await sock.sendMessage(from, {
+                    image: { url: randomAnime.images.jpg.image_url },
+                    caption: `*${randomAnime.title}*\n*Score:* ${randomAnime.score || 'N/A'}\n${randomAnime.url}`
+                });
+            } catch (e) {
+                console.error(e);
+                await sock.sendMessage(from, { text: 'Gagal ambil random anime.' });
+            }
+            break;
+
+        default:
+            break;
+    }
+}
+
+module.exports = handleMessage;
+				
 			// Fun Menu
 			case 'dadu': {
 				let ddsa = [{ url: 'https://telegra.ph/file/9f60e4cdbeb79fc6aff7a.png', no: 1 },{ url: 'https://telegra.ph/file/797f86e444755282374ef.png', no: 2 },{ url: 'https://telegra.ph/file/970d2a7656ada7c579b69.png', no: 3 },{ url: 'https://telegra.ph/file/0470d295e00ebe789fb4d.png', no: 4 },{ url: 'https://telegra.ph/file/a9d7332e7ba1d1d26a2be.png', no: 5 },{ url: 'https://telegra.ph/file/99dcd999991a79f9ba0c0.png', no: 6 }]
