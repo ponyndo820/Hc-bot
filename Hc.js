@@ -3316,7 +3316,7 @@ async function handleMessage(sock, msg) {
     const args = text.split(' ').slice(1).join(' ').trim();
 
     switch (cmd) {
-        case '!cariwaifu':
+        case 'cariwaifu':
             if (!args) {
                 await sock.sendMessage(from, { text: 'Masukin nama karakter. Contoh: !cariwaifu Rem' });
                 break;
@@ -3349,7 +3349,7 @@ async function handleMessage(sock, msg) {
             }
             break;
 
-        case '!carianime':
+        case 'carianime':
             if (!args) {
                 await sock.sendMessage(from, { text: 'Masukin nama anime. Contoh: !carianime Jujutsu Kaisen' });
                 break;
@@ -3382,7 +3382,7 @@ async function handleMessage(sock, msg) {
             }
             break;
 
-        case '!randomanime':
+        case 'randomanime':
             try {
                 const res = await axios.get('https://api.jikan.moe/v4/random/anime');
                 // Endpoint random langsung mengembalikan satu objek di dalam properti .data
