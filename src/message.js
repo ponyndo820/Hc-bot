@@ -5,7 +5,7 @@ import https from 'https';
 import axios from 'axios';
 import chalk from 'chalk';
 import crypto from 'crypto';
-import { fileTypeFromBuffer, fileTypeFromFile } from 'file-type';
+import FileType from 'file-type';
 import chokidar from 'chokidar';
 import { fileURLToPath } from 'url';
 import PhoneNumber from 'awesome-phonenumber';
