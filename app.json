@@ -1,7 +1,0 @@
-{
-	"name": "Hc-bot",
-	"description": "WhatsApp Bot Using Lib Baileys",
-	"repository": "https://github.com/ponyndo820/Hc-bot",
-	"logo": "https://node-js-sample.herokuapp.com/node.png",
-	"keywords": ["whatsapp-bot", "multi-device", "bot", "whatsapp"]
-}
