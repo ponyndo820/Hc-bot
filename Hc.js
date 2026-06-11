@@ -16,7 +16,7 @@ import axios from 'axios';
 import chalk from 'chalk';
 import yts from 'yt-search';
 import fetch from 'node-fetch';
-import FileType from 'file-type';
+import { fileTypeFromBuffer, fileTypeFromFile } from 'file-type';
 import { Chess } from 'chess.js';
 import { fileURLToPath } from 'url';
 import FormData from 'form-data';
