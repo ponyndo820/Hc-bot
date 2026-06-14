@@ -1432,7 +1432,7 @@ scrapePrimbon: require('scrape-primbon'),
 			}
 			break
 			case 'sc': case 'script': {
-				await m.reply(`https://github.com/ponyndo820/Hc-bot\n⬆️ Itu Sc nya cuy`, {
+				await m.reply(`https://github.com/ponyndo820/Hc-bot-master\n⬆️ Itu Sc nya cuy`, {
 					contextInfo: {
 						forwardingScore: 10,
 						isForwarded: true,
